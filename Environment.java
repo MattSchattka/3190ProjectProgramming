@@ -86,7 +86,7 @@ public class Environment {
     /// aka it tried to move out of bounds
     public int getReward(State oldState, State newState) {
         int diff = -Math.abs(newState.height() - oldState.height());
-        int penalty = 0;
+        int penalty = -1; // base penalty for any action
         int endReward = 0;
         if (oldState == newState)
             penalty = -50;

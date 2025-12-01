@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class ProjectProgramming {
+    static final double epsilon = 0.1;
+
     public static void main(String[] args) {
         String input = "";
         int rows = 0;
@@ -45,6 +47,7 @@ public class ProjectProgramming {
         // set up scenario
         Agent agent = new Agent(rows, cols);
         Environment e = new Environment(rows, cols, range, agent);
+        int totalT = 1;
         int t = 1;
         int oldT = 0;
         double alphaStep = 1 / t;
@@ -59,7 +62,7 @@ public class ProjectProgramming {
                 e.printEnv();
 
                 // agent performs action
-                Agent.Actions action = agent.policy();
+                Agent.Actions action = agent.policy(epsilon / t);
 
                 // get new state and reward for performing that action
                 State newState = e.performAction(action);
@@ -70,7 +73,8 @@ public class ProjectProgramming {
 
                 // update t and alphaStep
                 t++;
-                alphaStep = 1.0 / t;
+                totalT++;
+                alphaStep = 1.0 / totalT;
 
                 // wait for user's input
                 // System.out.print("press enter to continue");

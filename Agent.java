@@ -8,7 +8,6 @@ public class Agent {
 
     // CONSTANTS
     final double gamma = 0.9;
-    final double epsilon = 0.1;
 
     final int NUM_ACTIONS = Actions.values().length;
 
@@ -38,7 +37,7 @@ public class Agent {
     }
 
     // e-greedy policy
-    public Actions policy() {
+    public Actions policy(double epsilon) {
         if (Math.random() <= epsilon) {
             // explore
             int randInt = (int) (Math.random() * NUM_ACTIONS);
